@@ -2,12 +2,8 @@ from django.shortcuts import render
 from .models import *
 
 # Create your views here.
-def signin(request):
-    a=individue.objects.all()
-    temoin=0
-    for i in a:
-        if i.nom=="lamharchi" and i.prenom=="khalil":
-            temoin=1
-    print(temoin)
-
+def welcome(request):
     return render(request,'signin.html')
+def prend_un_rendez_vous(request):
+    return render(request,'rendez_vous.html')
+
