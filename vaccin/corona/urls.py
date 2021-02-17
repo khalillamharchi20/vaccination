@@ -10,4 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('rdv/', views.rdv),
+    path('post_question/',views.post_question),
 ]
