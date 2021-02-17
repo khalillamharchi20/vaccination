@@ -19,6 +19,6 @@ from corona import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index),
-    path('rdv/',views.rdv),
+    path('',views.welcome),
+    path('rendez_vous/',views.prend_un_rendez_vous),
 ]
