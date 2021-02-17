@@ -14,7 +14,7 @@ def post_question(request):
     question=request.POST.get('Message')
     b=Question(name=name,email=email,sujet=sujet,question=question)
     b.save()
-    send_mail('vaccination maroc support','nous avons bien recu votre email','corona.vaccination2020@gmail.com',
+    send_mail('vaccination maroc support','nous avons bien recu votre email \n contenue:'+question+'?','corona.vaccination2020@gmail.com',
               [email],False)
 
 
