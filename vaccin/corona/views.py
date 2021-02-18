@@ -13,9 +13,23 @@ def index(request):
             reponse.append(k.reponse)
             question.append(k.question)
             counter=counter+1
-    mylist = zip(question, reponse)
+    list1=[]
+    list2=[]
+    list3=[]
+    list4=[]
+
+
+    for k in range (0,len(reponse)):
+        list1.append("collapse")
+        list3.append("collapsed")
+    for k in range(1,len(reponse)+1):
+        list2.append("faq"+str(k))
+        list4.append("#faq"+str(k))
+    mylist = zip(question, reponse,list1,list2,list3,list4)
+
+
     context = {
-        'mylist': mylist,
+        'mylist': mylist
     }
     b=Question.objects.all()
     for k in b:
