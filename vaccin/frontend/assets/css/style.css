@@ -16,6 +16,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
 
+.certificat {
+  background: #cc1616;
+    border: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -126,6 +136,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #header .logo a {
   color: #fff;
+  font-family: "Open Sans";
+  
 }
 
 #header .logo img {
@@ -1068,6 +1080,7 @@ label {
 span {
   color: #cc1616;
   font-weight: bold;
+  font-family: 'OPen Sans';
 }
 .label {
   
@@ -1477,7 +1490,7 @@ span {
 }
 
 .blog .entry .entry-img {
-  max-height: 400px;
+  max-height: 200px;
   margin: -20px -20px 20px -20px;
   overflow: hidden;
 }
@@ -1496,7 +1509,7 @@ span {
 }
 
 .blog .entry .entry-title a:hover {
-  color: #e43c5c;
+  color: #e82d2d;
 }
 
 .blog .entry .entry-meta {
@@ -1543,16 +1556,15 @@ span {
 
 .blog .entry .entry-content .read-more a {
   display: inline-block;
-  background: #e43c5c;
+  background: #cc1616;
   color: #fff;
   padding: 5px 20px 7px 20px;
   transition: 0.3s;
   font-size: 14px;
-  border-radius: 50px;
 }
 
 .blog .entry .entry-content .read-more a:hover {
-  background: #d01d3f;
+  background: #e82d2d;
 }
 
 .blog .entry .entry-content h3 {
@@ -1623,7 +1635,7 @@ span {
 }
 
 .blog .entry .entry-footer a:hover {
-  color: #e43c5c;
+  color: #e82d2d;
 }
 
 .blog .entry .entry-footer .cats {
@@ -1733,7 +1745,7 @@ span {
 }
 
 .blog .blog-comments .comment h5 a:hover {
-  color: #e43c5c;
+  color: #cc1616;
 }
 
 .blog .blog-comments .comment h5 .reply {
@@ -1780,7 +1792,7 @@ span {
 
 .blog .blog-comments .reply-form input:focus {
   box-shadow: none;
-  border-color: #f096a7;
+  border-color: #e82d2d;
 }
 
 .blog .blog-comments .reply-form textarea {
@@ -1791,7 +1803,7 @@ span {
 
 .blog .blog-comments .reply-form textarea:focus {
   box-shadow: none;
-  border-color: #f096a7;
+  border-color: #e82d2d;
 }
 
 .blog .blog-comments .reply-form .form-group {
@@ -1807,7 +1819,7 @@ span {
 }
 
 .blog .blog-comments .reply-form .btn-primary:hover {
-  background-color: #e43c5c;
+  background-color: #cc1616;
 }
 
 .blog .blog-pagination {
@@ -1837,8 +1849,8 @@ span {
 }
 
 .blog .blog-pagination li.active, .blog .blog-pagination li:hover {
-  background: #e43c5c;
-  border: 1px solid #e43c5c;
+  background: #cc1616;
+  border: 1px solid #cc1616;
 }
 
 .blog .blog-pagination li.active a, .blog .blog-pagination li:hover a {
@@ -1880,7 +1892,6 @@ span {
   border: 1px solid #d3cacb;
   padding: 3px 10px;
   position: relative;
-  border-radius: 50px;
 }
 
 .blog .sidebar .search-form form input[type="text"] {
@@ -1891,7 +1902,6 @@ span {
 
 .blog .sidebar .search-form form button {
   position: absolute;
-  border-radius: 50px;
   top: 0;
   right: -2px;
   bottom: 0;
@@ -1900,13 +1910,13 @@ span {
   font-size: 16px;
   padding: 0 20px;
   margin: -1px;
-  background: #e43c5c;
+  background: #cc1616;
   color: #fff;
   transition: 0.3s;
 }
 
 .blog .sidebar .search-form form button:hover {
-  background: #d01d3f;
+  background: #e82d2d;
 }
 
 .blog .sidebar .categories ul {
@@ -1923,7 +1933,7 @@ span {
 }
 
 .blog .sidebar .categories ul a:hover {
-  color: #e43c5c;
+  color: #cc1616;
 }
 
 .blog .sidebar .categories ul a span {
@@ -1953,7 +1963,7 @@ span {
 }
 
 .blog .sidebar .recent-posts h4 a:hover {
-  color: #e43c5c;
+  color: #cc1616;
 }
 
 .blog .sidebar .recent-posts time {
@@ -1984,14 +1994,13 @@ span {
   margin: 0 6px 8px 0;
   border: 1px solid #ede9e9;
   display: inline-block;
-  border-radius: 50px;
   transition: 0.3s;
 }
 
 .blog .sidebar .tags ul a:hover {
   color: #fff;
-  border: 1px solid #e43c5c;
-  background: #e43c5c;
+  border: 1px solid #cc1616;
+  background: #cc1616;
 }
 
 .blog .sidebar .tags ul a span {

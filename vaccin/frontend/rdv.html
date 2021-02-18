@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>COVI-STOP</title>
+  <title>COVAC-19</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,14 +26,14 @@
   <header id="header" class="fixed-top header">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto"><a href="index.html">COVI-STOP</a></h1>
+      <h1 class="logo mr-auto"><a href="index.html">COVAC-19</a></h1>
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
             <li><a href="index.html">Accueil</a></li>
             <li class="active"><a href="rdv.html">Prendre un RDV</a></li>
-            <li><a href="map.html">Carte Iteractive</a></li>
+            <li><a href="map.html">Carte Interactive</a></li>
             <li><a href="blog.html">Centre d'Informations</a></li>
           </ul>
       </nav><!-- .nav-menu -->
@@ -44,8 +44,12 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container position-relative " data-aos="fade-up" data-aos-delay="" >
-        <div class="d-flex justify-content-center"><div class="col-lg-6" data-aos="zoom-in">
+        <div class="d-flex justify-content-center"><div class="col-lg-12" data-aos="zoom-in">
+          <div class="row">
+            <div class="col-lg-6">
+              
             <form action="" method="post" role="form" class="php-email-form" style="background: #fff;">
+              <h3 class="p-2">Prendre un RDV</h3>
               <div class="form-row">
                 <div class="col-md-6 form-group">
                   <label class="label" for="cin">Numéro de CIN<span>*</span></label>
@@ -101,6 +105,29 @@
               </div>
               <div class="text-center"><button type="submit">Demander un RDV</button></div>
             </form>
+          </div>
+          <div class="col-lg-6"> <form action="" method="post" role="form" class="php-email-form" style="background: #fff;">
+            <h3 class="p-2">Vérifier ma Situation</h3>
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <label class="label" for="cin">Numéro de CIN<span>*</span></label>
+                <input type="text" name="cin" class="form-control" id="cin" placeholder="A00000" data-rule="minlen:4" data-msg="Entrée invalide" />
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group">
+                <label class="label" for="exp">Date d'Expiration<span>*</span></label>
+                <input type="date" class="form-control" name="exp" id="exp" min="31-1-2021"/>
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Vous avons recu votre message. Merci!</div>
+            </div>
+            <div class="text-center"><button type="submit">Vérifier ma Situation</button></div>
+          </form></div>
+          </div>
           </div>
         </div>
         
