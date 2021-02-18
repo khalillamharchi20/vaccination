@@ -55,5 +55,8 @@ def post_question(request):
 
 
     return render(request,'post_question.html')
+def blog(request):
+    return render(request,'blog.html')
+
 
 

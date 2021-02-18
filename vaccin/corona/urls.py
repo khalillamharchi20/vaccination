@@ -11,4 +11,5 @@ urlpatterns = [
     path('', views.index),
     path('rdv/', views.rdv),
     path('post_question/',views.post_question),
+    path('blog/',views.blog),
 ]
