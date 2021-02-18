@@ -3,6 +3,18 @@ from .models import Question
 from django.core.mail import send_mail
 
 # Create your views here.
+
+
+def pation(request):
+
+
+    context = {}
+
+    return render(request, 'corona/user.html', context)
+
+
+
+
 def index(request):
     a=Question.objects.all().order_by('date')
     question=[]
@@ -40,9 +52,11 @@ def index(request):
 
 
 
-    return render(request, 'index.html',context)
+    return render(request, 'corona/index.html',context)
+
 def rdv(request):
-    return render(request, 'rdv.html')
+    return render(request, 'corona/rdv.html')
+
 def post_question(request):
     name=request.POST.get('name')
     email=request.POST.get('email')
@@ -53,10 +67,14 @@ def post_question(request):
     send_mail('vaccination maroc support','nous avons bien recu votre email \n contenue:'+question+'?','corona.vaccination2020@gmail.com',
               [email],False)
 
+    return render(request,'corona/post_question.html')
 
-    return render(request,'post_question.html')
+def map(request):
+    return render(request, 'corona/map.html')
+
+
 def blog(request):
-    return render(request,'blog.html')
+    return render(request,'corona/blog.html')
 
 
 

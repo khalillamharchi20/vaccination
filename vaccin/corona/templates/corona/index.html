@@ -33,10 +33,10 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="/">Accueil</a></li>
-          <li><a href="/rdv/">Prendre un RDV</a></li>
-          <li><a href="map.html">Carte Iteractive</a></li>
-          <li><a href="/blog/">Centre d'Informations</a></li>
+          <li class="active"><a href="{% url 'home' %}">Accueil</a></li>
+          <li><a href="{% url 'rdv' %}">Prendre un RDV</a></li>
+          <li><a href="{% url 'map' %}">Carte Iteractive</a></li>
+          <li><a href="{% url 'blog' %}">Centre d'Informations</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -48,7 +48,7 @@
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
       <h1>Bienvenue à COVI-STOP</h1>
       <h2>La plateforme officielle de la campagne de vaccination contre le COVID-19 au Maroc</h2>
-      <a href="#about" class="btn-get-started scrollto">Prendre un RDV</a>
+      <a href="{% url 'rdv' %}" class="btn-get-started scrollto">Prendre un RDV</a>
     </div>
   </section><!-- End Hero -->
 
