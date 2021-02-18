@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from .models import Question
 from django.core.mail import send_mail
-
+from .form import *
 # Create your views here.
 
 
 def pation(request):
 
 
-    context = {}
-
-    return render(request, 'corona/user.html', context)
+    return render(request, 'corona/user.html')
 
 
 
@@ -55,7 +53,16 @@ def index(request):
     return render(request, 'corona/index.html',context)
 
 def rdv(request):
-    return render(request, 'corona/rdv.html')
+    form_registration = rdvForm()
+    form_login = loginForm()
+    if request.method == 'POST':
+
+        form_registration = rdvForm(request.POST)
+        if form_registration.is_valid():
+            form_registration.save()
+
+    context = {'form_registration': form_registration, 'form_login':form_login }
+    return render(request, 'corona/rdv.html', context)
 
 def post_question(request):
     name=request.POST.get('name')

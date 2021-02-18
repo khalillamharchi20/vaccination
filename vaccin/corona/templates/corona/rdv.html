@@ -49,32 +49,40 @@
             <div class="col-lg-6">
               
             <form action="" method="post" role="form" class="php-email-form" style="background: #fff;">
+              {% csrf_token %}
               <h3 class="p-2">Prendre un RDV</h3>
               <div class="form-row">
                 <div class="col-md-6 form-group">
                   <label class="label" for="cin">Numéro de CIN<span>*</span></label>
+                  {{form_registration.cin}}
 
-                  <input type="text" name="cin" class="form-control" id="cin" placeholder="A00000" data-rule="minlen:4" data-msg="Entrée invalide" />
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-6 form-group">
                   <label class="label" for="exp">Date d'Expiration<span>*</span></label>
-                  <input type="date" class="form-control" name="exp" id="exp" min="31-1-2021"/>
+                  {{form_registration.date_expiration}}
                   <div class="validate"></div>
                 </div>
               </div>
               <div class="form-row">
-              <div class="col-md-7 form-group">
-                  <label class="label" for="email">Adresse E-mail</label>
-                  <input type="" class="form-control" name="email" id="email" placeholder="exemple@email.com" data-rule="email" data-msg="Entrée invalide" />
+              <div class="col-md-6 form-group">
+                  <label class="label" for="cin">Nom de ville<span>*</span></label>
+                  {{form_registration.nom_ville}}
+
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-5 form-group">
                     <label  class="label" for="tel">Téléphone<span>*</span></label>
-                    <input type="tel" class="form-control" name="tel" id="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="0600000000">
+                    {{form_registration.phone}}
                     <div class="validate"></div>
                   </div>
+              <div class="col-md-7 form-group">
+                  <label class="label" for="email">Adresse E-mail</label>
+                  {{form_registration.email}}
+                  <div class="validate"></div>
+                </div>
               </div>
+
               <div class="">
                 <label class="label" for="prefered-time">Les jours de la semaine où vous êtes disponible:</label><br>
                 <input type="checkbox" id="lundi" name="jour-souhait" value="lundi">
@@ -112,12 +120,12 @@
             <div class="form-row">
               <div class="col-md-6 form-group">
                 <label class="label" for="cin">Numéro de CIN<span>*</span></label>
-                <input type="text" name="cin" class="form-control" id="cin" placeholder="A00000" data-rule="minlen:4" data-msg="Entrée invalide" />
+                {{form_login.cin}}
                 <div class="validate"></div>
               </div>
               <div class="col-md-6 form-group">
                 <label class="label" for="exp">Date d'Expiration<span>*</span></label>
-                <input type="date" class="form-control" name="exp" id="exp" min="31-1-2021"/>
+                {{form_login.date_expiration}}
                 <div class="validate"></div>
               </div>
             </div>
