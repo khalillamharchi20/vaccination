@@ -17,6 +17,15 @@ def index(request):
     context = {
         'mylist': mylist,
     }
+    b=Question.objects.all()
+    for k in b:
+        if k.reponse!="" and k.status==False:
+            send_mail('vaccination maroc support', k.reponse,
+                      'corona.vaccination2020@gmail.com',
+                      [k.email], False)
+
+
+
     return render(request, 'index.html',context)
 def rdv(request):
     return render(request, 'rdv.html')
@@ -25,7 +34,7 @@ def post_question(request):
     email=request.POST.get('email')
     sujet=request.POST.get('subject')
     question=request.POST.get('Message')
-    b=Question(name=name,email=email,sujet=sujet,question=question)
+    b=Question(name=name,email=email,sujet=sujet,question=question,status=False)
     b.save()
     send_mail('vaccination maroc support','nous avons bien recu votre email \n contenue:'+question+'?','corona.vaccination2020@gmail.com',
               [email],False)

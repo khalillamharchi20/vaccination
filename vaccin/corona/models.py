@@ -14,3 +14,5 @@ class Question(models.Model):
     email=models.EmailField(max_length=100,null=False)
     date = models.DateTimeField(default=datetime.now, blank=True)
     reponse=models.CharField(max_length=5000)
+    status=models.BooleanField()
+
