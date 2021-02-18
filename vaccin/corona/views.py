@@ -4,7 +4,20 @@ from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    a=Question.objects.all().order_by('date')
+    question=[]
+    reponse= []
+    counter=0
+    for k in a:
+        if k.reponse!="" and counter<9:
+            reponse.append(k.reponse)
+            question.append(k.question)
+            counter=counter+1
+    mylist = zip(question, reponse)
+    context = {
+        'mylist': mylist,
+    }
+    return render(request, 'index.html',context)
 def rdv(request):
     return render(request, 'rdv.html')
 def post_question(request):
@@ -19,4 +32,5 @@ def post_question(request):
 
 
     return render(request,'post_question.html')
+
 
