@@ -103,6 +103,7 @@
     </section><!-- End Plan Section -->
 
     <!-- ======= F.A.Q Section ======= -->
+
     <section id="faq" class="faq section-bg">
       <div class="container">
 
@@ -110,9 +111,10 @@
           <span>F.A.Q</span>
           <h2>F.A.Q</h2>
         </div>
+        {% for item1, item2 in mylist %}
 
         <ul class="faq-list">
-          {% for item1, item2 in mylist %}
+
 
 
 
@@ -127,7 +129,6 @@
               </p>
             </div>
           </li>
-          {% endfor %}
 
 
 
@@ -136,6 +137,8 @@
 
 
         </ul>
+        {% endfor %}
+
 
       </div>
     </section><!-- End F.A.Q Section -->
