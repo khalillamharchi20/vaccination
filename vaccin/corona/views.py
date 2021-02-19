@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from .models import Question
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 from django.core.mail import send_mail
+
+
 from .form import *
+from .models import Question
 # Create your views here.
 
 
@@ -83,5 +88,23 @@ def map(request):
 def blog(request):
     return render(request,'corona/blog.html')
 
+def render_pdf_view(request):
+    template_path = 'corona/pdf.html'
+    conext = {'myvar':'this is your template context'}
+    #create a django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="certificat de vaccination.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(conext)
+
+    #create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response
+    )
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('we had some errors <pre>' + html + '</pre>')
+    return response
 
 

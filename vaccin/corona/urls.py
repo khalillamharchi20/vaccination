@@ -14,4 +14,8 @@ urlpatterns = [
     path('blog/',views.blog, name='blog'),
     path('map/', views.map, name='map'),
     path('user/', views.pation, name='pation'),
+    path('pdf/', views.render_pdf_view, name='pdf'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
