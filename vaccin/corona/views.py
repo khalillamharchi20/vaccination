@@ -69,66 +69,66 @@ def rdv(request):
             # verifier l existance du pation
             nbregistration = registration.count()
             print(nbregistration)
-            if nbregistration > 0:
-                pk = registration[0].id
-                centre_viccins =centre_vaccination.objects.filter(nom_ville=nom_ville1)
-                centre_viccins_list= []
-                for center in centre_viccins:
-                    centre = center.id
-                    date_vaccin = date_vaccination.objects.filter(nom_centre=centre)
-                    test = True
-                    if date_vaccin.count() == 0:
-                        date_vaccination1=date_vaccination()
-                        date_vaccination2 = date_vaccination()
-                        date_vaccination1.date_v=(datetime.today()+timedelta(days=2)).strftime('%Y-%m-%d')
-                        date_vaccination2.date_v = (datetime.today()+timedelta(days=23)).strftime('%Y-%m-%d')
-                        date_vaccination1.nom_centre = center
-                        date_vaccination2.nom_centre = center
-                        date_vaccination1.nombre_passion = 1
-                        date_vaccination2.nombre_passion = 1
-
-                        registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1, nom_centre=center.id, date_faccination1=date_vaccination1.date_v, date_faccination2=date_vaccination2.date_v)
-                        date_vaccination1.save()
-                        date_vaccination2.save()
-                        test = False
-                        break
-                    else:
-                        datemax = date_vaccin[0].date_v
-                        for date in date_vaccin[1:]:
-                            if date.date_v > datemax:
-                                datemax = date.date_v
-                        centre_viccins_list.append((center, datemax))
-                if test == True:
-                    # cherchant le centre de la date de vaccination minimal
-                    min=0
-                    for i in range(1,len(centre_viccins_list)):
-                        if centre_viccins_list[i][1]<centre_viccins_list[min][1]:
-                            min=i
-                    notre_centre=centre_viccins_list[min][0]
-                    notre_date=centre_viccins_list[min][1] - timedelta(days=21)
-                    datevacc = date_vaccination.objects.filter(date_v=notre_date, nom_centre=notre_centre.id)
-                    if datevacc[0].nombre_passion < 100:
-                        nombre_passion1 = datevacc[0].nombre_passion +1
-                        datevacc.update(nombre_passion=nombre_passion1)
-                        datevacc2 = date_vaccination.objects.filter(date_v=notre_date+timedelta(days=21), nom_centre=notre_centre)
-                        datevacc2.update(nombre_passion=nombre_passion1)
-                        registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre, date_faccination1=datevacc[0].date_v, date_faccination2=datevacc2[0].date_v)
-                    else:
-                        while True:
-                            notre_date = datevacc[0].date_v + timedelta(days=1)
-                            date_vaccin = date_vaccination.objects.filter(nom_centre=notre_centre.id, date_v=notre_date)
-                            if date_vaccin.count() == 0:
-                                datevacc = date_vaccination()
-                                datevacc2 = date_vaccination()
-                                datevacc.date_v = notre_date
-                                datevacc2.date_v = notre_date + timedelta(days=21)
-                                datevacc.nom_centre = notre_centre
-                                datevacc.nom_centre = notre_centre
-                                datevacc.nombre_passion = 1
-                                datevacc2.nombre_passion = 1
-                                registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre.id, date_faccination1=datevacc[0].date_v,date_faccination2=datevacc2[0].date_v)
-                                break
-                return redirect('user', pk)
+            if nbregistration > 0 :
+                if registration[0].Statue == 'non_incrit':
+                    pk = registration[0].id
+                    centre_viccins =centre_vaccination.objects.filter(nom_ville=nom_ville1)
+                    centre_viccins_list= []
+                    for center in centre_viccins:
+                        centre = center.id
+                        date_vaccin = date_vaccination.objects.filter(nom_centre=centre)
+                        test = True
+                        if date_vaccin.count() == 0:
+                            date_vaccination1=date_vaccination()
+                            date_vaccination2 = date_vaccination()
+                            date_vaccination1.date_v=(datetime.today()+timedelta(days=2)).strftime('%Y-%m-%d')
+                            date_vaccination2.date_v = (datetime.today()+timedelta(days=23)).strftime('%Y-%m-%d')
+                            date_vaccination1.nom_centre = center
+                            date_vaccination2.nom_centre = center
+                            date_vaccination1.nombre_passion = 1
+                            date_vaccination2.nombre_passion = 1
+                            registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1, nom_centre=center.id, date_faccination1=date_vaccination1.date_v, date_faccination2=date_vaccination2.date_v)
+                            date_vaccination1.save()
+                            date_vaccination2.save()
+                            test = False
+                            break
+                        else:
+                            datemax = date_vaccin[0].date_v
+                            for date in date_vaccin[1:]:
+                                if date.date_v > datemax:
+                                    datemax = date.date_v
+                            centre_viccins_list.append((center, datemax))
+                    if test == True:
+                        # cherchant le centre de la date de vaccination minimal
+                        min=0
+                        for i in range(1,len(centre_viccins_list)):
+                            if centre_viccins_list[i][1]<centre_viccins_list[min][1]:
+                                min=i
+                        notre_centre=centre_viccins_list[min][0]
+                        notre_date=centre_viccins_list[min][1] - timedelta(days=21)
+                        datevacc = date_vaccination.objects.filter(date_v=notre_date, nom_centre=notre_centre.id)
+                        if datevacc[0].nombre_passion < 100:
+                            nombre_passion1 = datevacc[0].nombre_passion +1
+                            datevacc.update(nombre_passion=nombre_passion1)
+                            datevacc2 = date_vaccination.objects.filter(date_v=notre_date+timedelta(days=21), nom_centre=notre_centre)
+                            datevacc2.update(nombre_passion=nombre_passion1)
+                            registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre, date_faccination1=datevacc[0].date_v, date_faccination2=datevacc2[0].date_v)
+                        else:
+                            while True:
+                                notre_date = datevacc[0].date_v + timedelta(days=1)
+                                date_vaccin = date_vaccination.objects.filter(nom_centre=notre_centre.id, date_v=notre_date)
+                                if date_vaccin.count() == 0:
+                                    datevacc = date_vaccination()
+                                    datevacc2 = date_vaccination()
+                                    datevacc.date_v = notre_date
+                                    datevacc2.date_v = notre_date + timedelta(days=21)
+                                    datevacc.nom_centre = notre_centre
+                                    datevacc.nom_centre = notre_centre
+                                    datevacc.nombre_passion = 1
+                                    datevacc2.nombre_passion = 1
+                                    registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre.id, date_faccination1=datevacc[0].date_v,date_faccination2=datevacc2[0].date_v)
+                                    break
+                    return redirect('user', pk)
 
     context = {'form_registration': form_registration, 'form_login': form_login}
     return render(request, 'corona/rdv.html', context)
