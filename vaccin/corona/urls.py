@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 
 from . import views
 
+#app_name="rendu_vous"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
@@ -13,7 +15,7 @@ urlpatterns = [
     path('post_question/',views.post_question, name='post_question'),
     path('blog/',views.blog, name='blog'),
     path('map/', views.map, name='map'),
-    path('user/', views.pation, name='pation'),
+    path('user_profile/', views.user_profile, name='user_profile'),
     path('pdf/', views.render_pdf_view, name='pdf'),
 ]
 

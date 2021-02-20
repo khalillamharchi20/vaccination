@@ -13,6 +13,7 @@ class rdvForm(ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control', 'type':'tel', 'id':'tel', 'placeholder':'0600000000'}),
             'email': forms.TextInput(attrs={'class': 'form-control', 'name':'email', 'id':'email', 'placeholder':'exemple@email.com', 'data-rule':'email' }),
 
+
         }
 
 class loginForm(ModelForm):
