@@ -12,14 +12,6 @@ from .models import *
 # Create your views here.
 
 
-def user_profile(request):
-
-
-    return render(request, 'corona/user.html')
-
-
-
-
 def index(request):
     a=Question.objects.all().order_by('date')
     question=[]
@@ -78,6 +70,7 @@ def rdv(request):
             nbregistration = registration.count()
             print(nbregistration)
             if nbregistration > 0:
+                pk = registration[0].id
                 centre_viccins =centre_vaccination.objects.filter(nom_ville=nom_ville1)
                 centre_viccins_list= []
                 for center in centre_viccins:
@@ -89,18 +82,22 @@ def rdv(request):
                         date_vaccination2 = date_vaccination()
                         date_vaccination1.date_v=(datetime.today()+timedelta(days=2)).strftime('%Y-%m-%d')
                         date_vaccination2.date_v = (datetime.today()+timedelta(days=23)).strftime('%Y-%m-%d')
-                        date_vaccination1.nom_centre = center.id
-                        date_vaccination2.nom_centre = center.id
+                        date_vaccination1.nom_centre = center
+                        date_vaccination2.nom_centre = center
                         date_vaccination1.nombre_passion = 1
                         date_vaccination2.nombre_passion = 1
-                        registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1, nom_centre=center.nom_centre, date_faccination1=date_vaccination1, date_faccination2=date_vaccination2)
+
+                        registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1, nom_centre=center.id, date_faccination1=date_vaccination1.date_v, date_faccination2=date_vaccination2.date_v)
                         date_vaccination1.save()
                         date_vaccination2.save()
                         test = False
                         break
                     else:
-                        datemax = max(date_vaccin.date_v)
-                        centre_viccins_list.append((center.nom_centre, datemax))
+                        datemax = date_vaccin[0].date_v
+                        for date in date_vaccin[1:]:
+                            if date.date_v > datemax:
+                                datemax = date.date_v
+                        centre_viccins_list.append((center, datemax))
                 if test == True:
                     # cherchant le centre de la date de vaccination minimal
                     min=0
@@ -109,17 +106,17 @@ def rdv(request):
                             min=i
                     notre_centre=centre_viccins_list[min][0]
                     notre_date=centre_viccins_list[min][1] - timedelta(days=21)
-                    datevacc = date_vaccination.objects.filter(date_v=notre_date, nom_centre=notre_centre)
-                    if datevacc.nombre_passion < 100:
-                        nombre_passion1 = datevacc.nombre_passion +1
+                    datevacc = date_vaccination.objects.filter(date_v=notre_date, nom_centre=notre_centre.id)
+                    if datevacc[0].nombre_passion < 100:
+                        nombre_passion1 = datevacc[0].nombre_passion +1
                         datevacc.update(nombre_passion=nombre_passion1)
                         datevacc2 = date_vaccination.objects.filter(date_v=notre_date+timedelta(days=21), nom_centre=notre_centre)
                         datevacc2.update(nombre_passion=nombre_passion1)
-                        registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre, date_faccination1=datevacc.date_v, date_faccination2=datevacc2.date_v)
+                        registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre, date_faccination1=datevacc[0].date_v, date_faccination2=datevacc2[0].date_v)
                     else:
                         while True:
-                            notre_date = datevacc.date_v + timedelta(days=1)
-                            date_vaccin = date_vaccination.objects.filter(nom_centre=notre_centre, date_v=notre_date)
+                            notre_date = datevacc[0].date_v + timedelta(days=1)
+                            date_vaccin = date_vaccination.objects.filter(nom_centre=notre_centre.id, date_v=notre_date)
                             if date_vaccin.count() == 0:
                                 datevacc = date_vaccination()
                                 datevacc2 = date_vaccination()
@@ -129,14 +126,19 @@ def rdv(request):
                                 datevacc.nom_centre = notre_centre
                                 datevacc.nombre_passion = 1
                                 datevacc2.nombre_passion = 1
-                                registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre, date_faccination1=datevacc.date_v,date_faccination2=datevacc2.date_v)
+                                registration.update(nom_ville=nom_ville1, Statue='inscrit', email=email1, phone=phone1,nom_centre=notre_centre.id, date_faccination1=datevacc[0].date_v,date_faccination2=datevacc2[0].date_v)
                                 break
-                # modifier les
-                context = {'registration': registration}
-                return redirect('user_profile')
+                return redirect('user', pk)
 
     context = {'form_registration': form_registration, 'form_login': form_login}
     return render(request, 'corona/rdv.html', context)
+
+
+def user(request, pk):
+
+    user1 = pation.objects.filter(id=pk)
+    contexte={'user':user1[0]}
+    return render(request, 'corona/user.html',contexte)
 
 def post_question(request):
     name=request.POST.get('name')
@@ -156,7 +158,7 @@ def map(request):
 
 def blog(request):
     return render(request,'corona/blog.html')
-
+"""
 def render_pdf_view(request):
     template_path = 'corona/pdf.html'
     conext = {'myvar':'this is your template context'}
@@ -176,4 +178,4 @@ def render_pdf_view(request):
         return HttpResponse('we had some errors <pre>' + html + '</pre>')
     return response
 
-
+"""

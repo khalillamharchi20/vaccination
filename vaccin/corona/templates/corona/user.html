@@ -48,24 +48,32 @@
             <h3 class="mt-3">Informations</h3>
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-6">
-                    <label for="" class="label pt-3">Nom complet</label>
-                    <div>Abdessamad Abid</div>
-                    <label for="" class="label pt-2">Numero de CIN</label>
-                    <div>A000000</div>
-                    <label for="" class="label pt-2">Statut vaccination</label>
-                    <div class="pb-2">Pas encore enregistré</div>
+                    <label  class="label pt-3">Nom complet</label>
+                    <!--<div>Abdessamad Abid</div>-->
+                    <div>{{user.FullName_Pation}}</div>
+                    <label  class="label pt-2">Numero de CIN</label>
+                    <!--<div>A000000</div>-->
+                    <div>{{user.cin}}</div>
+
+                    <label  class="label pt-2">Statut vaccination</label>
+                    <!--<div class="pb-2">Pas encore enregistré</div>-->
+                    <div>{{user.Statue}}</div>
+
                 </div>
                 <div class="col-lg-6">
-                    <label for="" class="label pt-3">Lien de vaccination</label>
-                    <div>n/a</div>
-                    <label for="" class="label pt-2">Date première dose</label>
-                    <div>n/a</div>
-                    <label for="" class="label pt-2">Date deuxième dose</label>
-                    <div class="pb-2">n/a</div>
+                    <label  class="label pt-3">Lien de vaccination</label>
+                    <!--<div>n/a</div>-->
+                    <div>{{user.nom_centre}}</div>
+                    <label  class="label pt-2">Date première dose</label>
+                    <!--<div>n/a</div>-->
+                    <div>{{user.date_faccination1}}</div>
+                    <label class="label pt-2">Date deuxième dose</label>
+                    <!--<div class="pb-2">n/a</div>-->
+                    <div>{{user.date_faccination2}}</div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center" >
-                <a href="{% url 'pdf' %}"> <button class="certificat" type="submit" >Télécharger Certificat de Vaccination</button></a>
+                <a href=""> <button class="certificat" type="submit" >Télécharger Certificat de Vaccination</button></a>
             </div>
           </div>
         </div>

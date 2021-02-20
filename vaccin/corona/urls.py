@@ -15,8 +15,8 @@ urlpatterns = [
     path('post_question/',views.post_question, name='post_question'),
     path('blog/',views.blog, name='blog'),
     path('map/', views.map, name='map'),
-    path('user_profile/', views.user_profile, name='user_profile'),
-    path('pdf/', views.render_pdf_view, name='pdf'),
+    path('user/<str:pk>', views.user, name='user'),
+    # path('pdf/', views.render_pdf_view, name='pdf'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
